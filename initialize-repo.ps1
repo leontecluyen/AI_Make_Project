@@ -38,12 +38,25 @@ if ($choice -eq "y") {
         }
         $repoName = Read-Host "Enter Repository Name (default: AI_Make_Project)"
         if ($null -eq $repoName -or $repoName -eq "") { $repoName = "AI_Make_Project" }
+        
+        # Check if remote origin already exists
+        if (git remote | Select-String "origin") {
+            Write-Host "Origin remote already exists. Removing it to add the new one..." -ForegroundColor Yellow
+            git remote remove origin
+        }
+
         Write-Host "Creating GitHub repository..." -ForegroundColor Yellow
-        git remote remove origin
         gh repo create $repoName --public --source=. --remote=origin --push
     }
     elseif ($method -eq "2") {
         $url = Read-Host "Enter Remote Git URL (e.g., https://github.com/user/repo.git)"
+        
+        # Check if remote origin already exists
+        if (git remote | Select-String "origin") {
+            Write-Host "Origin remote already exists. Removing it to add the new one..." -ForegroundColor Yellow
+            git remote remove origin
+        }
+
         git remote add origin $url
         Write-Host "Pushing to origin..." -ForegroundColor Yellow
         git branch -M main
