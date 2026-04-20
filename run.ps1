@@ -31,7 +31,7 @@ function Run-Agent([string]$Id) {
     $Prompt = Get-Content $File -Raw
     
     # Execute Claude CLI with auto-permission skip
-    claude $SkipFlag -p $Prompt
+    claude $SkipFlag -p "$Prompt"
     return $true
 }
 

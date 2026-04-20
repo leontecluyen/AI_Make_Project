@@ -1,0 +1,27 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Scan {
+  id          String   @id @default(cuid())
+  rawValue    String
+  barcodeType String
+  aiData      String?
+  sessionTag  String?
+  engine      String
+  createdAt   DateTime @default(now())
+}
+
+model AppSetting {
+  id             String   @id @default("singleton")
+  continuousScan Boolean  @default(false)
+  waitIntervalMs Int      @default(0)
+  cameraDeviceId String?
+  zoomLevel      Float    @default(1.0)
+  updatedAt      DateTime @updatedAt
+}
