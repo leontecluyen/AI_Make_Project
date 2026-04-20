@@ -1,0 +1,24 @@
+# chạy tự động theo bước
+#Chạy toàn bộ quy trình từ đầu đến cuối:
+.\run.ps1 all
+#Chạy bước kế tiếp (Tự động nhận diện):
+.\run.ps1 next
+#Chạy một bước cụ thể (Ví dụ bước 2):
+.\run.ps1 02
+
+# chạy bỏ qua quyền
+claude --dangerously-skip-permissions -p (Get-Content ai-agents/01-architect.md -Raw); 
+claude --dangerously-skip-permissions -p (Get-Content ai-agents/02-developer.md -Raw); 
+claude --dangerously-skip-permissions -p (Get-Content ai-agents/03-tester.md -Raw); 
+claude --dangerously-skip-permissions -p (Get-Content ai-agents/04-deployer.md -Raw); 
+claude --dangerously-skip-permissions -p (Get-Content ai-agents/05-pm.md -Raw)
+
+# chạy từng bước theo cmd để tương tác quyền với claude
+claude -p (Get-Content ai-agents/01-architect.md -Raw); 
+claude -p (Get-Content ai-agents/02-developer.md -Raw); 
+claude -p (Get-Content ai-agents/03-tester.md -Raw); 
+claude -p (Get-Content ai-agents/04-deployer.md -Raw); 
+claude -p (Get-Content ai-agents/05-pm.md -Raw)
+
+
+
