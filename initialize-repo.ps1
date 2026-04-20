@@ -31,6 +31,10 @@ if ($choice -eq "y") {
     $method = Read-Host "Choice (1/2)"
 
     if ($method -eq "1") {
+        if (!(Get-Command gh -ErrorAction SilentlyContinue)) {
+            Write-Host "Error: GitHub CLI (gh) not found. Please install it from cli.github.com or use Method 2." -ForegroundColor Red
+            return
+        }
         $repoName = Read-Host "Enter Repository Name (default: AI_Make_Project)"
         if ($null -eq $repoName -or $repoName -eq "") { $repoName = "AI_Make_Project" }
         Write-Host "Creating GitHub repository..." -ForegroundColor Yellow
