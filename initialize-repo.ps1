@@ -8,7 +8,8 @@ Write-Host "----------------------------------------" -ForegroundColor Cyan
 if (!(Test-Path .git)) {
     Write-Host "[1/4] Initializing Git..." -ForegroundColor Yellow
     git init
-} else {
+}
+else {
     Write-Host "[1/4] Git already initialized." -ForegroundColor Gray
 }
 
@@ -38,6 +39,7 @@ if ($choice -eq "y") {
         $repoName = Read-Host "Enter Repository Name (default: AI_Make_Project)"
         if ($null -eq $repoName -or $repoName -eq "") { $repoName = "AI_Make_Project" }
         Write-Host "Creating GitHub repository..." -ForegroundColor Yellow
+        git remote remove origin
         gh repo create $repoName --public --source=. --remote=origin --push
     }
     elseif ($method -eq "2") {
